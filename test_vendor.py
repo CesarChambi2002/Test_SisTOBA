@@ -14,7 +14,7 @@ desired_caps = {
     "appActivity": "com.example.MainActivity" # Actividad principal
 }
 
-
+#sdsadsadsadsa
 driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desired_caps)
 
 try:
