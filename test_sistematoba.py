@@ -34,3 +34,4 @@ class TestInterfaz:
         self.driver.find_element(By.XPATH, "//input[@name='email']").send_keys("grover@gmail.com")
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//input[@name='password_user']").send_keys("12345678")
+        #continuara.....
