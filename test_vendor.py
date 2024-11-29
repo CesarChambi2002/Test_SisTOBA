@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Configuración de capacidades deseadas
+
 desired_caps = {
     "platformName": "Android",                # Cambia a "iOS" si pruebas en iPhone
     "platformVersion": "10",                 # Versión de Android o iOS
