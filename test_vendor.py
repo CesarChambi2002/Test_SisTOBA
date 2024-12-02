@@ -27,4 +27,4 @@ class TestLogin:
         self.wait.until(EC.presence_of_element_located((By.ID, "edtUsuario"))).send_keys("grover@gmail.com")
         self.wait.until(EC.presence_of_element_located((By.ID, "edtPassword"))).send_keys("12345678")
         self.wait.until(EC.presence_of_element_located((By.ID, "btnLogin"))).click()
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnCerrarSesion")))
+        self.wait.until(EC.presence_of_element_located((By.ID, "btnCerrarSesion"))).click()
