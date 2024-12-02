@@ -22,7 +22,7 @@ class TestInterfaz:
     
     def teardown_method(self):
         self.driver.quit()
-        print("Prueba Visual completada")
+        print("Paso prueba")
         time.sleep(2)
     
     def test_verify_contenido_inicio(self):
