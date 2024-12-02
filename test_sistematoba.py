@@ -12,7 +12,8 @@ import time
 #driver.find_element(By.XPATH, "//input[@name='email']").send_keys("grover@gmail.com")
 #time.sleep(2)
 #driver.find_element(By.XPATH, "//input[@name='password_user']").send_keys("12345678")
-   
+
+#test inicio de sesion y pagina principal  
 class TestInterfaz:
     def setup_method(self):
         self.driver = webdriver.Chrome()
@@ -22,8 +23,8 @@ class TestInterfaz:
     def teardown_method(self):
         self.driver.quit()
         print("Prueba Visual completada")
+        time.sleep(2)
     
-    time.sleep(2)
     def test_verify_contenido_inicio(self):
         actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'card-header text-center')]//b").text 
         esperada = "Sistema de Ventas"  
@@ -34,4 +35,13 @@ class TestInterfaz:
         self.driver.find_element(By.XPATH, "//input[@name='email']").send_keys("grover@gmail.com")
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//input[@name='password_user']").send_keys("12345678")
-        #continuara.....
+        time.sleep(2)
+        self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary btn-block']").click()
+        time.sleep(2)
+    
+    def test_verify_contenido_paginaprin(self):
+        self.test_insertar_usuario_contrasena()
+        actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'col-sm-12')]//h1").text
+        esperada = "Bienvenido al SISTEMA de VENTAS"
+        assert esperada in actual, f"Error. actuL {actual}, esperado: {esperada}"
+        time.sleep(2)
