@@ -48,7 +48,11 @@ class TestUsuarios:
         print("********", actual)
         assert esperada in actual, f"Error. Actual: {actual}, Esperado: {esperada}"
         time.sleep(2)
-#Pruebas visuales completas procedemos a crear un usuario
+
+        #Pruebas visuales completas procedemos a crear un usuario
+        ########################################################
+        ############## EN OTRA CLASE CREAMOS EL USUARIO#########
+
         #creacion de un usuario
         #self.driver.find_element(By.XPATH, "//input[@name='nombres']").send_keys("Maluma")
         #self.driver.find_element(By.XPATH, "//input[@name='email']").send_keys("maluma@gmail.com")
@@ -68,4 +72,5 @@ class TestUsuarios:
         print("********", actual)
         assert esperada in actual, f"Error. Actual: {actual}, Esperado: {esperada}"
         
+        #//tr[contains(@class,'odd')]//td[text()='maluma@gmail.com']//a[@class,'btn btn-info']
         time.sleep(2)
