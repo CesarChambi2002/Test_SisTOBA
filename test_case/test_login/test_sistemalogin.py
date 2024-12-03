@@ -22,7 +22,7 @@ class TestInterfaz:
     
     def teardown_method(self):
         self.driver.quit()
-        print("Paso prueba")
+        print(" Paso prueba")
         
     
     def test_verify_contenido_inicio(self):

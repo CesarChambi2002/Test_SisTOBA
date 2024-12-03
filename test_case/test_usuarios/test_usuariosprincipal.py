@@ -13,7 +13,7 @@ class TestUsuarios:
     
     def teardown_method(self):
         self.driver.quit()
-        #print("Paso prueba")
+        print("  Paso prueba")
         
 
     #def test_iniciar_con_metodo_externo(self):
@@ -24,10 +24,10 @@ class TestUsuarios:
         insertar_usuario_contrasena(self.driver)
         #desplegamos el boton usuarios
         self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
-        time.sleep(2)
+        time.sleep(1)
         #hacemos click en el boton listado de usuarios
         self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de usuarios')]").click()
-        time.sleep(2)
+        time.sleep(1)
         # Verifica que el contenido esperado esté ahi Listado usuario
         actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'container-fluid')]//h1").text
         esperada = "Listado de usuario"
@@ -38,14 +38,28 @@ class TestUsuarios:
     
         #volvemos a desplegar el menu
         self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
-        time.sleep(2)
+        time.sleep(1)
         #hacemos click en el boton creacion de usuario
         self.driver.find_element(By.XPATH,"//a[@class='nav-link']//p[contains(text(),'Creación de usuario')]").click()
-        time.sleep(2)
+        time.sleep(1)
         #Verifica que el contenido esperado esté ahi creacion de usuario
         actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'col-sm-12')]//h1").text
         esperada = "Registro de un nuevo usuario"
         print("********", actual)
         assert esperada in actual, f"Error. ACtual: {actual}, Esperado: {esperada}"
-
-
+        time.sleep(2)
+#Pruebas visuales completas procedemos a crear un usuario
+        #creacion de un usuario
+        #self.driver.find_element(By.XPATH, "//input[@name='nombres']").send_keys("Maluma")
+        #self.driver.find_element(By.XPATH, "//input[@name='email']").send_keys("Maluma@gmail.com")
+        #self.driver.find_element(By.XPATH, "//select[@name='rol']//option[@value='3']").click()
+        #self.driver.find_element(By.XPATH, "//input[@name='password_user']").send_keys("maluma@123")
+        #self.driver.find_element(By.XPATH, "//input[@name='password_repeat']").send_keys("maluma@123")
+        self.driver.find_element(By.XPATH, "//div[contains(@class,'form-group')]//button[@class='btn btn-primary']").click()
+        time.sleep(3)
+        #volvemos a la lista de usuario
+        self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
+        time.sleep(1)
+        #hacemos click en el boton listado de usuarios para verificar que el usuario este creado
+        self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de usuarios')]").click()
+        time.sleep(2)
