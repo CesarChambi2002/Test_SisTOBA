@@ -13,22 +13,39 @@ class TestUsuarios:
     
     def teardown_method(self):
         self.driver.quit()
-        print("Paso prueba")
+        #print("Paso prueba")
         
 
-    def test_iniciar_con_metodo_externo(self):
+    #def test_iniciar_con_metodo_externo(self):
         # Aquí usamos el metodo importado
-        insertar_usuario_contrasena(self.driver)
+        #insertar_usuario_contrasena(self.driver)
     
     def test_desplegar_usuarios(self):
         insertar_usuario_contrasena(self.driver)
+        #desplegamos el boton usuarios
         self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
         time.sleep(2)
+        #hacemos click en el boton listado de usuarios
         self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de usuarios')]").click()
         time.sleep(2)
-         # Verifica que el contenido esperado esté ahi
+        # Verifica que el contenido esperado esté ahi Listado usuario
         actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'container-fluid')]//h1").text
         esperada = "Listado de usuario"
         print("********", actual)
         assert esperada in actual, f"Error. Actual: {actual}, Esperado: {esperada}"
+        time.sleep(2)
+    
+    
+        #volvemos a desplegar el menu
+        self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
+        time.sleep(2)
+        #hacemos click en el boton creacion de usuario
+        self.driver.find_element(By.XPATH,"//a[@class='nav-link']//p[contains(text(),'Creación de usuario')]").click()
+        time.sleep(2)
+        #Verifica que el contenido esperado esté ahi creacion de usuario
+        actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'col-sm-12')]//h1").text
+        esperada = "Registro de un nuevo usuario"
+        print("********", actual)
+        assert esperada in actual, f"Error. ACtual: {actual}, Esperado: {esperada}"
+
 
