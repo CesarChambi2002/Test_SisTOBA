@@ -20,4 +20,9 @@ class TestUsuarios:
         # Aquí usamos el metodo importado
         insertar_usuario_contrasena(self.driver)
     
-    
+    def test_desplegar_usuarios(self):
+        insertar_usuario_contrasena(self.driver)
+        self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
+        time.sleep(2)
+        self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de usuarios')]").click()
+        time.sleep(2)
