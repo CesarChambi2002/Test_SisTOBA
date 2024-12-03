@@ -14,7 +14,7 @@ class TestUsuarios:
     def teardown_method(self):
         self.driver.quit()
         print("Paso prueba")
-        time.sleep(2)
+        
 
     def test_iniciar_con_metodo_externo(self):
         # Aquí usamos el metodo importado
@@ -26,3 +26,9 @@ class TestUsuarios:
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de usuarios')]").click()
         time.sleep(2)
+         # Verifica que el contenido esperado esté ahi
+        actual = self.driver.find_element(By.XPATH, "//div[contains(@class,'container-fluid')]//h1").text
+        esperada = "Listado de usuario"
+        print("********", actual)
+        assert esperada in actual, f"Error. Actual: {actual}, Esperado: {esperada}"
+
