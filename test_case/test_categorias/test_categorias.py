@@ -32,9 +32,33 @@ class TestCategorias:
         print("********", actual)
         assert esperado in actual, f"Error. Actual: {actual}, Esperado: {esperado}"
         time.sleep(2)
-
+     
+     def test_crear_categoria(self):
         ################## creamos una nueva categoria
         ################## mover a una clase independiete para el test
-        self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary']//i").click()
+        insertar_usuario_contrasena(self.driver)
+        #Desplegamos el menu del boton categorias
+        time.sleep(1)
+        self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Categorías')]").click()
+        time.sleep(1)
+        #seleccionamos el boton Listado de categoriuas
+        self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Listado de categorías')]").click()
+        time.sleep(1)
+        #click al boton nueva categoria
+        #self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary']//i").click()
+        #time.sleep(1)
+        ########################
+        ## agregamos nueva categoria ##
+        #self.driver.find_element(By.XPATH, "//input[@id='nombre_categoria']").send_keys("Repuestos")
+        #time.sleep(2)
+        ## guardamos la nueva categoria 
+        #self.driver.find_element(By.XPATH, "//button[@id='btn_create']").click()
+        #time.sleep(2)
+        #verificamos que la categoria nueva que agregamos este agregada
+        self.driver.find_element(By.XPATH, "//a[text()='4']").click()
+        time.sleep(1)
+        actual = self.driver.find_element(By.XPATH, "//tr[@class='odd']//td[contains(text(),'Repuestos')]").text
+        esperado = "Repuestos"
+        print("********", actual)
+        assert esperado in actual, f"Error. Actual: {actual}, Esperado: {esperado}"
         time.sleep(2)
-        #ingresamos la categoria que creamos en el imput
