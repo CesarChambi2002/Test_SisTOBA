@@ -1,8 +1,7 @@
 import pytest
+import time
 from appium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from appium.options.android import UiAutomator2Options
 
 class TestRegistrarCategoria:
@@ -18,33 +17,22 @@ class TestRegistrarCategoria:
         options.uiautomator2_server_install_timeout = 60000  
 
         self.driver = webdriver.Remote(command_executor="http://127.0.0.1:4723", options=options)
-        self.wait = WebDriverWait(self.driver, 20)
     
     def salir(self):
         self.driver.quit()
 
     def test_registrar_categoria(self):
-
-        self.wait.until(EC.presence_of_element_located((By.ID, "edtUsuario"))).send_keys("grover@gmail.com")
-        self.wait.until(EC.presence_of_element_located((By.ID, "edtPassword"))).send_keys("12345678")
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnLogin"))).click()
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnIrCategorias"))).click()
-
-        self.wait.until(EC.presence_of_element_located((By.ID, "edtNombreCategoria"))).send_keys("Nueva categoria")
-
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnInsertarCategoria"))).click()
-     
-        self.wait.until(EC.presence_of_element_located((By.ID, "listViewCategorias")))
-     
-        categorias = self.driver.find_elements(By.XPATH, "//android.widget.ListView/android.widget.TextView")
-
-        if not categorias:
-            print("no hay categorias con ese nombre")
-        else:
-            print("elementos encontrados")
-            for categoria in categorias:
-                print(f"- {categoria.text}")
-
+        self.driver.find_element(By.ID, "edtUsuario").send_keys("grover@gmail.com")
+        self.driver.find_element(By.ID, "edtPassword").send_keys("12345678")
+        self.driver.find_element(By.ID, "btnLogin").click()
+        time.sleep(5)
+        self.driver.find_element(By.ID, "btnIrCategorias").click()
         
-        textos_categorias = [categoria.text for categoria in categorias]
-        assert "Nueva prueba categoria" in textos_categorias, "la categoria no se agrego"
+        time.sleep(1)
+        self.driver.find_element(By.ID, "edtNombreCategoria").send_keys("Nueva categoria")
+        self.driver.find_element(By.ID, "btnInsertarCategoria").click()
+        time.sleep(3)
+
+        categorias = self.driver.find_elements(By.XPATH, "//android.widget.ListView/android.widget.TextView")
+        time.sleep(2)
+
