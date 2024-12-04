@@ -18,7 +18,7 @@ class TestLogin:
 
         self.driver = webdriver.Remote(command_executor="http://127.0.0.1:4723", options=options)
     
-    def salir(self):
+    def teardown_method(self):
         self.driver.quit()
 
     def test_login(self):
