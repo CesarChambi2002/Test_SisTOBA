@@ -54,9 +54,10 @@ class TestCategorias:
         ## guardamos la nueva categoria 
         #self.driver.find_element(By.XPATH, "//button[@id='btn_create']").click()
         #time.sleep(2)
-        #verificamos que la categoria nueva que agregamos este agregada
+        #nos dirigimos la pagina 4 de la lista
         self.driver.find_element(By.XPATH, "//a[text()='4']").click()
         time.sleep(1)
+         #verificamos que la categoria nueva que agregamos este agregada
         actual = self.driver.find_element(By.XPATH, "//tr[@class='odd']//td[contains(text(),'Repuestos')]").text
         esperado = "Repuestos"
         print("********", actual)
