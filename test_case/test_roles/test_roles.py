@@ -53,8 +53,8 @@ class TestRoles:
         time.sleep(1)
         self.driver.find_element(By.XPATH, "//a[@class='nav-link']//p[contains(text(),'Creación de rol')]").click()
         time.sleep(1)
-        #Insertamos el nombre del usuario que desemos crear
-        #self.driver.find_element(By.XPATH, "//input[@name='rol']").send_keys("Pachirisu")
+        #Insertamos el nombre del ROL que desemos crear
+        #self.driver.find_element(By.XPATH, "//input[@name='rol']").send_keys("Empleado")
         #time.sleep(1)
         #click al boton guardar
         self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary']").click()
