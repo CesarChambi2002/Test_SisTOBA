@@ -3,7 +3,7 @@ import time
 
 
 def insertar_usuario_contrasena(driver):
-    # metodo para ingresar uaurio y contraseña mas click
+    # metodo para ingresar usurio y contraseña mas click
     
     driver.find_element(By.XPATH, "//input[@name='email']").send_keys("grover@gmail.com")
     #time.sleep(2)
