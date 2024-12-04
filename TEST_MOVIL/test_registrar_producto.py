@@ -1,8 +1,7 @@
 import pytest
+import time
 from appium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from appium.options.android import UiAutomator2Options
 
 
@@ -19,19 +18,33 @@ class TestRegistrarProducto:
         options.uiautomator2_server_install_timeout = 60000  
 
         self.driver = webdriver.Remote(command_executor="http://127.0.0.1:4723", options=options)
-        self.wait = WebDriverWait(self.driver, 20)
-    
+
     def teardown(self):
         self.driver.quit()
 
     def test_registrar_producto(self):
-        
-        self.wait.until(EC.presence_of_element_located((By.ID, "edtUsuario"))).send_keys("grover@gmail.com")
-        self.wait.until(EC.presence_of_element_located((By.ID, "edtPassword"))).send_keys("12345678")
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnLogin"))).click()
+        self.driver.find_element(By.ID, "edtUsuario").send_keys("grover@gmail.com")
+        self.driver.find_element(By.ID, "edtPassword").send_keys("12345678")
+        self.driver.find_element(By.ID, "btnLogin").click()
 
-        self.wait.until(EC.presence_of_element_located((By.ID, "btnIrProductos"))).click()
+        time.sleep(5)  
+        self.driver.find_element(By.ID, "btnIrProductos").click()
 
-        self.wait.until(EC.presence_of_element_located((By.ID, "spnCategorias"))).click()
-        categoria = self.wait.until(EC.presence_of_element_located((By.XPATH, "//android.widget.TextView[@text='Item 1']")))
-        categoria.click()
+        time.sleep(1)
+        self.driver.find_element(By.ID, "spnCategorias").click()
+        self.driver.find_element(By.XPATH, "//android.widget.CheckedTextView[@text='TECLADOS']").click()
+
+        self.driver.find_element(By.ID, "edtNombre").send_keys("Producto de Prueba")
+        self.driver.find_element(By.ID, "edtDescripcion").send_keys("Descripción de prueba")
+        self.driver.find_element(By.ID, "edtStock").send_keys("10")
+        self.driver.find_element(By.ID, "edtStockMin").send_keys("1")
+        self.driver.find_element(By.ID, "edtStockMax").send_keys("20")
+        self.driver.find_element(By.ID, "edtPrecioCompra").send_keys("100.50")
+        self.driver.find_element(By.ID, "edtPrecioVenta").send_keys("150.75")
+
+        self.driver.find_element(By.ID, "btnGuardarProducto").click()
+
+        time.sleep(2)
+        toast_message = self.driver.find_element(By.XPATH, "//android.widget.Toast[1]").text
+
+        assert toast_message == "Producto registrado correctamente.", "Sin exito"
