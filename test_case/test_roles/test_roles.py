@@ -75,7 +75,7 @@ class TestRoles:
         ####### HACER CLICK AL BOTON EDITAR #######
         self.driver.find_element(By.XPATH, "//tr[contains(@class,'even')]//div[@class='btn-group']//a[@class='btn btn-success']").click()
         time.sleep(2)
-
+        
         ############## el locator de los botones es correcto pero intercala entre even y odd si tenemos 3 seran odd
         ############## even, odd trabajar el editar, ver y eliminar con la loactor de una sola clase osea un even o un odd
         ############## para no tener conflictos copn los locators

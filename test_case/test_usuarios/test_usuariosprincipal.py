@@ -48,11 +48,17 @@ class TestUsuarios:
         print("********", actual)
         assert esperada in actual, f"Error. Actual: {actual}, Esperado: {esperada}"
         time.sleep(2)
-
+    
+    def test_crear_usuario(self):
         #Pruebas visuales completas procedemos a crear un usuario
         ########################################################
         ############## EN OTRA CLASE CREAMOS EL USUARIO#########
-
+        insertar_usuario_contrasena(self.driver)
+        #desplegamos el boton usuarios
+        self.driver.find_element(By.XPATH, "//li[@class='nav-item']//p[contains(text(),'Usuarios')]").click()
+        time.sleep(1)
+        self.driver.find_element(By.XPATH,"//a[@class='nav-link']//p[contains(text(),'Creación de usuario')]").click()
+        time.sleep(1)
         #creacion de un usuario
         #self.driver.find_element(By.XPATH, "//input[@name='nombres']").send_keys("Maluma")
         #self.driver.find_element(By.XPATH, "//input[@name='email']").send_keys("maluma@gmail.com")
